@@ -3,9 +3,10 @@ import Course from "../models/CourseModel.js";
 export const addCourse = async (req, res) => {
   const course = new Course(req.body);
   try {
-    const addedCourse = await course.save();
-    console.log(addedCourse);
-    res.status(201).json(addedCourse);
+    // const addedCourse = await course.save();
+    await course.save();
+    console.log(course);
+    res.status(201).json(course);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
@@ -15,7 +16,6 @@ export const addCourse = async (req, res) => {
 export const getCourses = async (req, res) => {
   try {
     const courses = await Course.find();
-
     if (!courses) {
       res.status(404).json("Courses Not Found");
     }
@@ -28,7 +28,6 @@ export const getCourses = async (req, res) => {
 };
 
 export const getCourseById = async (req, res) => {
-  console.log("get a course function called");
   console.log(req.params.id);
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     console.log("Invalid request");

@@ -1,6 +1,5 @@
 import { validationResult } from "express-validator";
 //this code is common for all the validations
-//it's better to use a separate middleware like this file and call it after the validatio check file is executed
 const ValidationMiddleware = (req, res, next) => {
   console.log("Called validation middleware");
   const errors = validationResult(req);
