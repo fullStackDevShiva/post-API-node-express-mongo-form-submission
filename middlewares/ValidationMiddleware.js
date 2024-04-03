@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 const ValidationMiddleware = (req, res, next) => {
   console.log("Called validation middleware");
   const errors = validationResult(req);
+  // To check if any error exists
   if (!errors.isEmpty()) {
     console.log({ errors: errors.array({ onlyFirstError: true }) });
     return res
